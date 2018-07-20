@@ -1,16 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import {IHero} from './hero';
 
 @Component({
     selector: 'super-heroes',
-    templateUrl: './hero-list.component.html'
+    templateUrl: './hero-list.component.html',
+    styleUrls: ['./hero-list.component.css']
 })
 
-export class HeroListComponent{
+export class HeroListComponent implements OnInit{
     pageTitle:string = "Hero List";
     imageWidth:number = 100;
     imageHeight:number = 100;
     imageMargin:number = 2;
-    heroes:any[]=[
+    heroes:IHero[]=[
         {
             "heroId": 1,
             "heroName": "Captain America",
@@ -60,4 +63,12 @@ export class HeroListComponent{
             "imageURL": "./assets/images/agentFury.jpg" 
         }
     ]
+    showImage:boolean = false;
+    toggleImage(): void{
+        this.showImage = !this.showImage;
+    }
+    listFilter: string = 'm';
+    ngOnInit(): void{
+        console.log("I am using componemt lifecycle hook..!!");
+    }
 }
